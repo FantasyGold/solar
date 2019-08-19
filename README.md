@@ -4,7 +4,7 @@
 go get -u github.com/fantasygold/solar/cli/solar
 ```
 
-`solar` assumes that the [Solidity compiler](https://github.com/ethereum/solidity) is already installed.
+`solar` assumes that the [Solidity compiler](https://github.com/ethereum/solidity) and [Go] (https://golang.org) are already installed.
 
 # Prototype for Smart Contract deployment tool
 

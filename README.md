@@ -1,10 +1,44 @@
 # Install
 
+`solar` requires [Solidity compiler](https://github.com/ethereum/solidity) and [Go] (https://golang.org) to be installed.
+
+`Install Go` 
+
+```
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt-get update
+sudo apt-get install golang-go
+
+```
+
+`Install Solidity`
+
+```
+sudo add-apt-repository ppa:ethereum/ethereum
+sudo apt-get update
+sudo apt-get install solc
+```
+You'll Also need `geth` so you can install `ethereum` with
+
+```
+sudo apt-get install ethereum
+```
+Or if you don't want to install all of the utilities (bootnode, evm, disasm, rlpdump, ethtest) just install `geth CLI` with 
+
+```
+apt-get install geth 
+```
+
+Install Solar
+
 ```
 go get -u github.com/fantasygold/solar/cli/solar
 ```
+Build with 
 
-`solar` assumes that the [Solidity compiler](https://github.com/ethereum/solidity) and [Go] (https://golang.org) are already installed.
+```
+go build github.com/fantasygold/solar/cli/solar
+```
 
 # Prototype for Smart Contract deployment tool
 
@@ -13,7 +47,7 @@ go get -u github.com/fantasygold/solar/cli/solar
 Start fantasygoldd in regtest mode:
 
 ```
-fantasygoldd -regtest -rpcuser=howard -rpcpassword=yeh
+fantasygoldd -regtest -rpcuser=user -rpcpassword=pass
 ```
 
 Use env variable to specify the local fantasygoldd RPC node:
@@ -31,7 +65,7 @@ docker run -it --rm \
   --name myapp \
   -v `pwd`:/dapp \
   -p 58806:58806 \
-  hayeah/fantasygoldportal
+  fantasygold/fantasygoldportal
 ```
 
 Then you enter into the container by running:
@@ -40,7 +74,7 @@ Then you enter into the container by running:
 docker exec -it myapp sh
 ```
 
-## Ethereum
+## Ethereum Options `geth`, `ganache-cli` and `parity dev chain`
 
 Start an Ethereum node, with RPC service:
 
@@ -48,6 +82,10 @@ Start an Ethereum node, with RPC service:
 geth --rpc --rpcapi "eth,miner,personal" --datadir "./" --nodiscover console
 ```
 
+Make ane new account with password on the console, with:
+```
+ personal.newAccount("passphrase")
+```
 Set the RPC endpoint, with your account address and password:
 
 ```
@@ -63,6 +101,16 @@ export SOLAR_ENV=development
 
 ## ganache-cli
 
+ganache-cli is written in JavaScript and distributed as a Node.js package via npm. Make sure you have Node.js (>= v6.11.5) installed.
+
+Using npm:
+```
+npm install -g ganache-cli
+```
+or, if you are using Yarn:
+```
+yarn global add ganache-cli
+```
 Start ganache with a fixed seed:
 
 ```
